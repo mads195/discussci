@@ -18,8 +18,17 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+    function __construct(){
+        parent::__construct();
+        // is_signed_in($this);
+        //$this->load->library('Twitter_lib');
+    }
+
 	public function index()
 	{
+        is_signed_in($this, false);
+
+        echo '<p>Screen Name: ' . $this->session->twitter_user_screen_name . '</p>';
 		$this->load->view('welcome_message');
 	}
 }
