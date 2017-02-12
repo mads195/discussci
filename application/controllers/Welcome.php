@@ -48,7 +48,7 @@ class Welcome extends CI_Controller {
 
 		$result = $client->listTables([
     		'ExclusiveStartTableName' => '<string>',
-    		'Limit' => <integer>,
+    		'Limit' => 10,
 		]);
 	}
 }
