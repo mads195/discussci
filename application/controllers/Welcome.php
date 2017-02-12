@@ -26,9 +26,29 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-        is_signed_in($this, false);
+        $this->session->is_signed_in($this, false);
 
         echo '<p>Screen Name: ' . $this->session->twitter_user_screen_name . '</p>';
 		$this->load->view('welcome_message');
+	}
+
+	public function ddb()
+	{
+		$sdk = new Aws\Sdk([
+    		'region'   => 'eu-west-1', // US West (Oregon) Region
+    		'version'  => 'latest',
+    		'credentials' => [
+        		'key'    => 'my-access-key-id',
+        		'secret' => 'my-secret-access-key',
+    		],
+		]);
+
+		// Create a new DynamoDB client
+		$dynamodb = $sdk->createDynamoDb();
+
+		$result = $client->listTables([
+    		'ExclusiveStartTableName' => '<string>',
+    		'Limit' => <integer>,
+		]);
 	}
 }
